@@ -3,9 +3,10 @@ function App() {
 
     return (
         <div className="App">
-            Welcome to happiness where you can escape and be in your happy place.
+            <p>Welcome to happiness where you can escape and be in your happy place.
 
-            This is what makes me happy
+            This is what makes me happy</p>
+            
             <button>Pictures</button>
             <button>Music</button>
 

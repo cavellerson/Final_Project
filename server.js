@@ -12,8 +12,8 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 // Controllers
-const postsController = require('./controllers/comments_controller.js')
-app.use('/home', postsController)
+const commentsController = require('./controllers/comments_controller.js')
+app.use('/comments', commentsController)
 
 
 //Database Connection
