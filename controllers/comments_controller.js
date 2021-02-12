@@ -17,7 +17,7 @@ comments.get('/', (req, res) => {
 comments.post('/', (req, res) => {
     Comment.create(req.body, (err, data) => {
         if (err) {
-            console.log("didn't work");
+            console.log(err);
         } else {
             res.json(data)
         }
