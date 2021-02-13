@@ -10,7 +10,26 @@ class App extends React.Component {
         body: '',
         votes: 0,
         comments: [],
+        mostVotes: ''
 
+    }
+
+    mostVotes = () => {
+
+        let max = 0
+        let objectWithMostVotes = ''
+        for (let object of this.state.comments) {
+
+            if (object.votes > max) {
+                max = object.votes
+                objectWithMostVotes = object
+            }
+
+        }
+
+        this.setState({
+            mostVotes: objectWithMostVotes.body
+        })
     }
 
     handleChange = (event) => {
@@ -32,6 +51,19 @@ class App extends React.Component {
         })
     }
 
+    upvoteComment = (event) => {
+        axios.put('/comments/upvote/' + event.target.value).then((response) => {
+            this.getComments();
+        })
+        this.mostVotes()
+    }
+
+    downvoteComment = (event) => {
+        axios.put('/comments/downvote/' + event.target.value).then((response) => {
+            this.getComments();
+        })
+        this.mostVotes()
+    }
 
 
     componentDidMount = () => {
@@ -69,7 +101,10 @@ class App extends React.Component {
                 <p>Welcome to my playground, this is a playground of everything i want to do yet not knowing how to execute it all</p>
 
 
+
+
                 <img className="cat" src="https://cdn.discordapp.com/attachments/618539506529992705/706640070253346826/lilyosqwikw41.png" alt=""></img>
+                Caption: {this.state.mostVotes}
                 <div className="main-content">
                     <h1>Comment</h1>
                     <form onSubmit={this.handleSubmit}>
@@ -91,7 +126,9 @@ class App extends React.Component {
                                 key={comment.id}
                                 comment={comment}
                                 deleteComment={this.deleteComment}
-                                handleChange={this.handleChange}/>
+                                handleChange={this.handleChange}
+                                upvoteComment={this.upvoteComment}
+                                downvoteComment={this.downvoteComment}/>
 
 
                         )
