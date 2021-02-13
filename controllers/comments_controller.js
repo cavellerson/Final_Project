@@ -1,6 +1,5 @@
 const express = require('express')
 const comments = express.Router();
-
 const commentPosts = require('../models/seed.js')
 const Comment = require("../models/comment.js")
 
