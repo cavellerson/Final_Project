@@ -10,6 +10,7 @@ class App extends React.Component {
         body: '',
         votes: 0,
         comments: [],
+
     }
 
     handleChange = (event) => {
@@ -50,6 +51,10 @@ class App extends React.Component {
         })
     }
 
+    hidePictures = () => {
+        document.querySelector('.main-content').style.display = 'none';
+
+    }
 
 
 
@@ -61,9 +66,7 @@ class App extends React.Component {
                 <Nav/>
                 </div>
                 <div>
-                <p>Welcome to happiness where you can escape and be in your happy place.
-
-                This is what makes me happy</p>
+                <p>Welcome to my playground, this is a playground of everything i want to do yet not knowing how to execute it all</p>
 
 
                 <img className="cat" src="https://cdn.discordapp.com/attachments/618539506529992705/706640070253346826/lilyosqwikw41.png" alt=""></img>
@@ -84,7 +87,7 @@ class App extends React.Component {
                     {this.state.comments.map((comment,index) => {
                         return (
 
-                            <Comment
+                            <Comment id="comment"
                                 key={comment.id}
                                 comment={comment}
                                 deleteComment={this.deleteComment}
@@ -95,7 +98,7 @@ class App extends React.Component {
                     })}
 
                 </div>
-                <button>Music</button>
+                <button onClick={this.hidePictures}>Music</button>
                 </div>
             </div>
 

@@ -43,5 +43,43 @@ comments.delete('/:id', (req, res) => {
     })
 })
 
+comments.put('/upvote/:id', (req, res) => {
+    Comment.findByIdAndUpdate(
+        req.params.id,
+        {
+            $inc: {votes: 1}
+        },
+        {new: true},
+        (err, data) => {
+            if (err) {
+                res.send(err)
+            } else {
+                Comment.find({}, (err, data) => {
+                    res.json(data)
+                })
+            }
+        }
+    )
+})
+
+comments.put('/downvote/:id', (req, res) => {
+    Comment.findByIdAndUpdate(
+        req.params.id,
+        {
+            $inc: {votes: -1}
+        },
+        {new: true},
+        (err, data) => {
+            if (err) {
+                res.send(err)
+            } else {
+                Comment.find({}, (err, data) => {
+                    res.json(data)
+                })
+            }
+        }
+    )
+})
+
 
 module.exports = comments;
