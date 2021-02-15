@@ -21,15 +21,15 @@ class App extends React.Component {
         for (let object of this.state.comments) {
 
             if (object.votes > max) {
-                max = object.votes
+                max = object.votes;
                 objectWithMostVotes = object
+                this.setState({
+                    mostVotes: objectWithMostVotes.body
+                })
             }
 
         }
 
-        this.setState({
-            mostVotes: objectWithMostVotes.body
-        })
     }
 
     handleChange = (event) => {
@@ -51,23 +51,32 @@ class App extends React.Component {
         })
     }
 
+    hideVoteButton = () => {
+        document.querySelector('.voteButton').style.display = 'none';
+    }
+
     upvoteComment = (event) => {
         axios.put('/comments/upvote/' + event.target.value).then((response) => {
+            this.mostVotes()
             this.getComments();
+
+
         })
-        this.mostVotes()
     }
 
     downvoteComment = (event) => {
         axios.put('/comments/downvote/' + event.target.value).then((response) => {
+            this.mostVotes();
             this.getComments();
+
         })
-        this.mostVotes()
     }
 
 
     componentDidMount = () => {
         this.getComments();
+        this.mostVotes()
+
     }
 
     handleSubmit = (event) => {
@@ -90,6 +99,7 @@ class App extends React.Component {
 
 
 
+
     render = () => {
         return (
 
@@ -103,8 +113,8 @@ class App extends React.Component {
 
 
 
-                <img className="cat" src="https://cdn.discordapp.com/attachments/618539506529992705/706640070253346826/lilyosqwikw41.png" alt=""></img>
-                Caption: {this.state.mostVotes}
+                <img className="cat" src="https://media1.tenor.com/images/8a9c48bd8de465b549dc8684bf6404a4/tenor.gif?itemid=4649018" alt=""></img>
+                <div>Caption: {this.state.mostVotes}</div>
                 <div className="main-content">
                     <h1>Comment</h1>
                     <form onSubmit={this.handleSubmit}>
@@ -121,14 +131,15 @@ class App extends React.Component {
                     </form>
                     {this.state.comments.map((comment,index) => {
                         return (
-
+                            <li key={index}>
                             <Comment id="comment"
-                                key={comment.id}
                                 comment={comment}
                                 deleteComment={this.deleteComment}
                                 handleChange={this.handleChange}
                                 upvoteComment={this.upvoteComment}
-                                downvoteComment={this.downvoteComment}/>
+                                downvoteComment={this.downvoteComment}
+                                hideVoteButton={this.hideVoteButton}/>
+                            </li>
 
 
                         )

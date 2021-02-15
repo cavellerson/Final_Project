@@ -14,9 +14,11 @@ class Comment extends Component {
                 > X </button>
                 </p>
                 <p>{this.props.comment.votes}</p>
-                <button value={this.props.comment._id}
+                <button className="voteButton" value={this.props.comment._id}
                 onClick={this.props.upvoteComment}>up</button>
-                <button value={this.props.comment._id}
+
+                <button className="voteButton"
+                value={this.props.comment._id}
                 onClick={this.props.downvoteComment}>down</button>
 
             </div>
