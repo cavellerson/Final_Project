@@ -5,9 +5,77 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: .5em;
+  background-color: lightblue;
+
+}
+
+button {
+    padding: .5em;
+    margin: auto;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+li {
+    list-style-type: none;
+}
+
+.image {
+    border: 1px solid black;
+    margin: auto;
+    width: 100%;
+}
+
+#caption {
+    text-align: center;
+    font-size: 2em;
+
+}
+
+.voteButtons {
+    padding: .5em;
+    display: flex;
+    margin: .5em;
+    display: flex;
+    justify-content: center;
+}
+
+.main-content {
+    margin: auto;
+    overflow-y:auto;
+    max-height: 50%;
+}
+
+#commentingForm {
+    display: flex;
+    justify-content: center;
+    margin: 1.5em;
+}
+
+p {
+    text-align: center;
+}
+
+#downvoteButton, #upvoteButton {
+    margin: .25em;
+}
+
+#deleteButton {
+    margin: .5em;
+    padding: .5em;
+}
+
+#body {
+    color: black;
+}
+
+h4 {
+    text-align: center;
 }
