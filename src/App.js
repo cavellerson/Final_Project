@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Comment from './components/comment';
 import Nav from './components/nav';
-import "bootstrap/dist/css/bootstrap.min.css"
 import axios from 'axios'
 
 
@@ -59,17 +58,16 @@ class App extends React.Component {
         axios.put('/comments/upvote/' + event.target.value).then((response) => {
             this.mostVotes()
             this.getComments();
+        });
 
-
-        })
     }
 
     downvoteComment = (event) => {
         axios.put('/comments/downvote/' + event.target.value).then((response) => {
             this.mostVotes();
             this.getComments();
+        });
 
-        })
     }
 
 
@@ -108,16 +106,17 @@ class App extends React.Component {
                 <Nav/>
                 </div>
                 <div>
-                <p>Welcome to my playground, this is a playground of everything i want to do yet not knowing how to execute it all</p>
+                <p>Welcome to caption maker, the caption with the most votes becomes the caption of the given picture/gif!</p>
 
 
 
 
-                <img className="cat" src="https://media1.tenor.com/images/8a9c48bd8de465b549dc8684bf6404a4/tenor.gif?itemid=4649018" alt=""></img>
-                <div>Caption: {this.state.mostVotes}</div>
+                <img className="image" src="https://media1.tenor.com/images/8a9c48bd8de465b549dc8684bf6404a4/tenor.gif?itemid=4649018" alt=""></img>
+                <div id="caption">{this.state.mostVotes}</div>
                 <div className="main-content">
-                    <h1>Comment</h1>
-                    <form onSubmit={this.handleSubmit}>
+
+                    <form id="commentingForm"
+                    onSubmit={this.handleSubmit}>
                         <label htmlFor="comment"></label>
                         <input placeholder="..."
                         type="text"
@@ -126,9 +125,11 @@ class App extends React.Component {
                         value={this.state.body}/>
                         <input type="submit"
                         id="commentButton"
-                        value="comment"/>
+                        value="comment"
+                        className="btn btn-outline-success"/>
 
                     </form>
+                    <div id="comments">
                     {this.state.comments.map((comment,index) => {
                         return (
                             <li key={index}>
@@ -144,9 +145,10 @@ class App extends React.Component {
 
                         )
                     })}
+                    </div>
 
                 </div>
-                <button onClick={this.hidePictures}>Music</button>
+
                 </div>
             </div>
 
