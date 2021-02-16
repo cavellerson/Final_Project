@@ -38,7 +38,7 @@ class App extends React.Component {
     }
 
     getComments = () => {
-        axios.get('/comments')
+        axios.get('https://captionerx.herokuapp.com/comments')
         .then((response) => {
             this.setState({
                 comments: response.data.reverse(),
@@ -55,7 +55,7 @@ class App extends React.Component {
     }
 
     upvoteComment = (event) => {
-        axios.put('/comments/upvote/' + event.target.value).then((response) => {
+        axios.put('https://captionerx.herokuapp.com/comments/upvote/' + event.target.value).then((response) => {
             this.mostVotes()
             this.getComments();
         });
@@ -63,7 +63,7 @@ class App extends React.Component {
     }
 
     downvoteComment = (event) => {
-        axios.put('/comments/downvote/' + event.target.value).then((response) => {
+        axios.put('https://captionerx.herokuapp.com/comments/downvote/' + event.target.value).then((response) => {
             this.mostVotes();
             this.getComments();
         });
@@ -79,13 +79,13 @@ class App extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        axios.post('/comments', this.state).then((response) => {
+        axios.post('https://captionerx.herokuapp.com/comments', this.state).then((response) => {
             this.getComments()
         })
     }
 
     deleteComment = (event) => {
-        axios.delete('/comments/' + event.target.value).then((response) => {
+        axios.delete('https://captionerx.herokuapp.com/comments/' + event.target.value).then((response) => {
             this.getComments()
         })
     }
